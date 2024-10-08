@@ -45,7 +45,7 @@ object NetworkManager {
         val gson = Gson()
         return try {
             val errorResponse = gson.fromJson(errorBody, ErrorBody::class.java)
-            errorResponse.message + ""
+            errorResponse.error + ""
         } catch (e: Exception) {
             e.printStackTrace()
             e.localizedMessage as String
