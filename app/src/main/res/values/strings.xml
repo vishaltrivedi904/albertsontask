@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Albertson Task</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Home Fragment</string>
+    <string name="second_fragment_label">Profile Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="internet_warning">Check your internet connection</string>
+    <string name="server_error_warning">Internal server error( %1$d ). We\'re on it. Try again soon.</string>
+    <string name="parsing_error">Parsing Error</string>
+    <string name="socket_time_out">We have detected that your device may be experiencing slow or no internet connection. Please check your network and try again later.</string>
+    <string name="force_logout">Your session has expired for security reasons. To keep your account safe, please log in again.</string>
+    <string name="n_a">N/A</string>
+    <string name="no_users">No users</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="please_enter_result_request_count_between_10_to_5000">Please enter result request count between 10 to 5000</string>
+    <string name="please_wait">Please wait...</string>
+</resources>
