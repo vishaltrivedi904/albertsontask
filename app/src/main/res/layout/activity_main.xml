@@ -77,6 +77,16 @@
 
             </LinearLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/default_result_count_10"
+                android:layout_marginTop="@dimen/_minus5sdp"
+                android:layout_marginHorizontal="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"/>
+
         </LinearLayout>
 
 
