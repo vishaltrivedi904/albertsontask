@@ -15,6 +15,7 @@ The Albertson Task is an Android application that combines traditional XML layou
 
 - **MVVM Architecture:** Separates concerns into Model, View, and ViewModel for maintainability.
 - **Repository Pattern:** Centralizes data management and business logic.
+- **Hilt:** Dependency injection framework for managing app dependencies.
 
 ## Technologies Used
 
