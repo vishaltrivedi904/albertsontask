@@ -40,13 +40,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/_11sdp"
+                android:layout_marginTop="@dimen/_minus10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/search"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_38sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/edittext_background"
