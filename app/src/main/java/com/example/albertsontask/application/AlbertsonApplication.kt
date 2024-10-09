@@ -9,13 +9,5 @@ class AlbertsonApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        context=this
-    }
-
-    companion object {
-        var context: AlbertsonApplication? = null
-        fun getInstance(): Context? {
-            return context
-        }
     }
 }

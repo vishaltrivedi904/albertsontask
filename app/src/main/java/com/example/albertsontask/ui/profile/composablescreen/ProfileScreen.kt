@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.albertsontask.R
-import com.example.albertsontask.application.AlbertsonApplication.Companion.context
 import com.example.albertsontask.data.model.profile.Profile
 import com.example.albertsontask.data.model.user.Result
 import com.example.albertsontask.ui.profile.composable.IconTextCard

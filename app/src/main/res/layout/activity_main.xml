@@ -54,7 +54,7 @@
                     android:textSize="@dimen/_12ssp"
                     android:maxLength="4"
                     android:fontFamily="@font/roboto_regular"
-                    android:hint="Enter number between 10 .. 5000"
+                    android:hint="@string/enter_number_between_10_to_5000"
                     android:inputType="numberDecimal"
                     android:paddingHorizontal="@dimen/_5sdp" />
 

@@ -93,9 +93,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.3")
     androidTestImplementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.49")
-    kaptAndroidTest("com.google.dagger:hilt-compiler:2.49")
-
     androidTestImplementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
 

@@ -1,13 +1,11 @@
-package com.example.albertsontask.data.api
+package com.example.albertsontask.utils
 
 import android.accounts.NetworkErrorException
 import android.content.Context
 import com.example.albertsontask.R
-import com.example.albertsontask.application.AlbertsonApplication
 import com.example.albertsontask.data.model.common.ErrorBody
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import retrofit2.Response
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -15,33 +13,8 @@ import java.net.UnknownHostException
 import java.text.ParseException
 import java.util.concurrent.TimeoutException
 
-object NetworkManager {
-
-    suspend fun <T> safeApiCall(
-        apiCall: suspend () -> Response<T>
-    ): NetworkResponse<T> {
-        return try {
-            val result = apiCall()
-            if (result.isSuccessful) {
-                NetworkResponse.Success(result.body()!!)
-            } else {
-                NetworkResponse.Error(
-                    getErrorMessage(result.errorBody()?.string() ?: ""),
-                    null,
-                    result.code()
-                )
-            }
-        } catch (throwable: Throwable) {
-            NetworkResponse.Error(
-                getExceptionMessage(
-                    AlbertsonApplication.getInstance()!!,
-                    throwable
-                ), null, 500
-            )
-        }
-    }
-
-    private fun getErrorMessage(errorBody: String?): String {
+object NetworkErrorUtil {
+    fun getErrorMessage(errorBody: String?): String {
         val gson = Gson()
         return try {
             val errorResponse = gson.fromJson(errorBody, ErrorBody::class.java)
@@ -52,7 +25,7 @@ object NetworkManager {
         }
     }
 
-    private fun getExceptionMessage(context: Context, error: Throwable): String? {
+    fun getExceptionMessage(context: Context, error: Throwable): String? {
         val message: String?
         when (error) {
             is NetworkErrorException -> {
@@ -89,11 +62,8 @@ object NetworkManager {
 
             else -> {
                 message = error.message
-
             }
         }
         return message
     }
-
-
 }

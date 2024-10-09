@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.albertsontask.data.api.NetworkManager
 import com.example.albertsontask.data.api.NetworkResponse
 import com.example.albertsontask.data.model.user.UserModel
 import com.example.albertsontask.domain.repository.Repository
@@ -26,9 +25,7 @@ class MainViewModel @Inject constructor(private val repository: Repository) : Vi
     fun getUsers(page: Int, results: Int, inc: String) {
         viewModelScope.launch {
             _data.postValue(NetworkResponse.Loading())
-            val result = NetworkManager.safeApiCall {
-                repository.getUsers(page, results, inc)
-            }
+            val result = repository.getUsers(page, results, inc)
             _data.postValue(result)
         }
     }

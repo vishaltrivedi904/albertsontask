@@ -18,4 +18,6 @@
     <string name="profile">Profile</string>
     <string name="please_enter_result_request_count_between_10_to_5000">Please enter result request count between 10 to 5000</string>
     <string name="please_wait">Please wait...</string>
+    <string name="something_went_wrong_please_try_again_later">Something went wrong please try again later.</string>
+    <string name="enter_number_between_10_to_5000">Enter number between 10 to 5000</string>
 </resources>

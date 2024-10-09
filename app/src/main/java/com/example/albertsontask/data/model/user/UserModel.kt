@@ -5,6 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserModel(
-    val info: Info,
     val results: MutableList<Result>
 ) : Parcelable

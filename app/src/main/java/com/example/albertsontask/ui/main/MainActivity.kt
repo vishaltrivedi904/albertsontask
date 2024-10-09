@@ -1,5 +1,6 @@
 package com.example.albertsontask.ui.main
 
+import android.accounts.NetworkErrorException
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -26,6 +27,8 @@ import com.example.albertsontask.data.model.user.Result
 import com.example.albertsontask.data.model.user.UserModel
 import com.example.albertsontask.databinding.ActivityMainBinding
 import com.example.albertsontask.ui.profile.ProfileActivity
+import com.example.albertsontask.utils.NetworkErrorUtil
+import com.example.albertsontask.utils.OnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -33,12 +36,47 @@ import java.util.Locale
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnItemClickListener<Result>,
-    SwipeRefreshLayout.OnRefreshListener, OnClickListener {
+    SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var binding: ActivityMainBinding
     private val mViewModel: MainViewModel by viewModels()
     private var adapter: UserAdapter? = null
     private var progressDialog: ProgressDialog? = null
+    private val singleClickListener = object : OnSingleClickListener() {
+        override fun onSingleClick(view: View) {
+            if (view.id == binding.searchButton.id) {
+                val results = binding.search.text.toString().trim()
+                if (TextUtils.isEmpty(results)) {
+                    mViewModel.results = 10
+                    mViewModel.page = 1
+                    adapter?.apply {
+                        clear()
+                    }
+                    mViewModel.type=0
+                    getUsers(mViewModel.page, mViewModel.results)
+                } else {
+                    if (results.toInt() > 5000 || results.toInt() < 10) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            getString(R.string.please_enter_result_request_count_between_10_to_5000),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        mViewModel.page = 1
+                        adapter?.apply {
+                            clear()
+                        }
+                        mViewModel.type=0
+                        mViewModel.results = results.toInt()
+                        getUsers(mViewModel.page, mViewModel.results)
+                    }
+
+
+                }
+
+            }
+        }
+    }
 
 
     private val scrollListener: RecyclerView.OnScrollListener =
@@ -79,7 +117,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Result>,
         binding.content.userListRecycler.setHasFixedSize(true)
         binding.content.userListRecycler.addOnScrollListener(scrollListener)
         binding.content.root.setOnRefreshListener(this)
-        binding.searchButton.setOnClickListener(this)
+        binding.searchButton.setOnClickListener(singleClickListener)
     }
 
     fun getUsers(
@@ -129,7 +167,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Result>,
     }
 
     private fun showLoading() {
-        progressDialog = ProgressDialog(this)
+        progressDialog = ProgressDialog(this,R.style.AppCompatAlertDialogStyle)
         progressDialog!!.setMessage(getString(R.string.please_wait))
         progressDialog!!.setCancelable(false)
         if (!progressDialog!!.isShowing) {
@@ -191,43 +229,20 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Result>,
                     showNoData(mutableListOf(), value.message ?: getString(R.string.no_users))
                     Toast.makeText(this@MainActivity,value.message ?: getString(R.string.no_users),Toast.LENGTH_SHORT).show()
                 }
+
+                is NetworkResponse.Failure -> {
+                    hideLoading()
+                    binding.content.progressBar.visibility = View.GONE
+                    binding.content.root.isRefreshing = false
+                    showNoData(mutableListOf(), NetworkErrorUtil.getExceptionMessage(this@MainActivity,value.throwable!!)?: getString(
+                        R.string.something_went_wrong_please_try_again_later
+                    ))
+                    Toast.makeText(this@MainActivity,NetworkErrorUtil.getExceptionMessage(this@MainActivity,value.throwable!!) ?: getString(R.string.something_went_wrong_please_try_again_later),Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
-    override fun onClick(view: View?) {
-        if (view!!.id == binding.searchButton.id) {
-            val results = binding.search.text.toString().trim()
-            if (TextUtils.isEmpty(results)) {
-                mViewModel.results = 10
-                mViewModel.page = 1
-                adapter?.apply {
-                    clear()
-                }
-                mViewModel.type=0
-                getUsers(mViewModel.page, mViewModel.results)
-            } else {
-                if (results.toInt() > 5000 || results.toInt() < 10) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        getString(R.string.please_enter_result_request_count_between_10_to_5000),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    mViewModel.page = 1
-                    adapter?.apply {
-                        clear()
-                    }
-                    mViewModel.type=0
-                    mViewModel.results = results.toInt()
-                    getUsers(mViewModel.page, mViewModel.results)
-                }
-
-
-            }
-
-        }
-    }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {
@@ -235,5 +250,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Result>,
         }
         return super.dispatchTouchEvent(ev)
     }
+
+
 
 }
