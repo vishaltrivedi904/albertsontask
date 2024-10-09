@@ -50,6 +50,12 @@ Click `Sync Project` with Gradle Files to download and set up dependencies.
 4. **Build and Run**
 Build and run the app on an emulator or a physical device.
 
+## Usage
+
+- **Main Screen:** Input the number of results you want to display using the text field and press "Submit."
+- **Details Page:** Tap on a user to view detailed information.
+- **Swipe to Refresh:** Pull down on the main screen to refresh the list of users and retrieve new data.
+
 ## Acknowledgements
 
 - **Jetpack Compose:** Modern UI toolkit for Android.
