@@ -35,8 +35,24 @@ The Albertson Task is an Android application that combines traditional XML layou
 - Android SDK
 - Kotlin 1.6 or newer
 
+## Acknowledgements
+
+- **Jetpack Compose:** Modern UI toolkit for Android.
+- **Paging 3:** Efficient paging library.
+- **Hilt:** Dependency injection framework.
+- **Retrofit:** Type-safe HTTP client.
+
 ### Installation
 
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/vishaltrivedi904/albertsontask.git
+
+2. **Open the Project**
+Launch Android Studio and select `File > Open`. Navigate to the cloned repository and open it.
+
+3. **Sync Gradle**
+Click `Sync Project` with Gradle Files to download and set up dependencies.
+
+4. **Build and Run**
+Build and run the app on an emulator or a physical device.
