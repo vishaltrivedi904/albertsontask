@@ -27,6 +27,8 @@ The Albertson Task is an Android application that combines traditional XML layou
 - **Hilt:** Simplifies dependency injection.
 - **Retrofit:** Type-safe HTTP client for making network requests.
 - **Material Components:** Provides customizable UI elements following Material Design guidelines.
+- **Glide:** Image loading and caching library for Android.
+- **Coil:** Image loading library for Jetpack Compose.
 
 ## Getting Started
 
@@ -60,7 +62,9 @@ Build and run the app on an emulator or a physical device.
 ## Acknowledgements
 
 - **Jetpack Compose:** Modern UI toolkit for Android.
-- **Paging 3:** Efficient paging library.
 - **Hilt:** Dependency injection framework.
 - **Retrofit:** Type-safe HTTP client.
+- **Glide:** Image loading and caching library for Android.
+- **Coil:** Image loading library for Jetpack Compose.
+
 
