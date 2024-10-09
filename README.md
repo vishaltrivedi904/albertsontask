@@ -21,8 +21,6 @@ The Albertson Task is an Android application that combines traditional XML layou
 - **Kotlin:** Official programming language for Android development.
 - **Jetpack Compose:** A modern toolkit for building native UI components.
 - **Coroutines:** For handling asynchronous operations.
-- **Flow:** Manages asynchronous data streams efficiently.
-- **Paging 3:** Implements pagination for smooth data loading.
 - **LiveData:** Observes data changes and updates the UI accordingly.
 - **ViewModel:** Manages UI-related data in a lifecycle-aware manner.
 - **Hilt:** Simplifies dependency injection.
